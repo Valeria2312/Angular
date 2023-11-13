@@ -6,10 +6,17 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ModalService {
   isVisible$ = new BehaviorSubject<boolean>(false)
+  isError$ = new BehaviorSubject<boolean>(false)
   open() {
     this.isVisible$.next(true)
   }
   close() {
     this.isVisible$.next(false)
+  }
+  openError() {
+    this.isError$.next(true)
+  }
+  closeError() {
+    this.isError$.next(false)
   }
 }

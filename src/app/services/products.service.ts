@@ -1,36 +1,45 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
-import {catchError, delay, Observable, retry, tap, throwError} from "rxjs";
+import {
+    BehaviorSubject,
+    catchError,
+    delay, map,
+    Observable,
+    of,
+    pairwise,
+    retry,
+} from "rxjs";
 import {IProduct} from "../../models/product";
 import {ErrorService} from "./error.service";
-import {products} from "../../data/products";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductsService{
+  private products$ = new BehaviorSubject<IProduct[]>([]);
+  private readonly URL = "https://fakestoreapi.com/products";
   constructor(
     private http: HttpClient,
     private errorService: ErrorService
   ) {
+      this.http.get<IProduct[]>(this.URL, {params: new HttpParams().append("limit", 5)})
+          .pipe(
+              delay(200),
+              retry(2),
+              catchError(this.errorHandler)
+          ).subscribe({next: (products) => { this.products$.next(products)}})
   }
-  products: IProduct[] = []
   getAll(): Observable<IProduct[]> {
-    return  this.http.get<IProduct[]>('https://fakestoreapi.com/products',
-      {params: new HttpParams().append("limit", 5)}).pipe(
-        delay(200),
-      retry(2),
-      tap(products => this.products = products),
-      catchError(this.errorHandler)
-    )
+      return this.products$.pipe(pairwise(), map(([prev, next]) => [...prev, ...next]))
   }
 
-  create(product:IProduct): Observable<IProduct> {
-   return this.http.post<IProduct>('https://fakestoreapi.com/products1', product).pipe(tap(prod => this.products.push(prod)))
+  create(product:IProduct) {
+this.products$.next([product])
   }
   private errorHandler(error: HttpErrorResponse) {
     this.errorService.handle(error.message)
-    return throwError(() => error.message)
+      console.log("Ошибка")
+    return of<IProduct[]>([]);
   }
 }
