@@ -22,13 +22,10 @@ import {AppModule} from "./app.module";
 
 @NgModule({
   declarations: [
-    MapComponent
+    // MapComponent,
+    // ProductPageComponent
   ],
   imports: [
-    MatCardModule,
-    MatInputModule,
-    MatSelectModule,
-    MatFormFieldModule,
     ProductsRoutingModule,
   ],
   providers: []

@@ -34,6 +34,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     FocusDirective,
     ProductPageComponent,
     NavigationComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
