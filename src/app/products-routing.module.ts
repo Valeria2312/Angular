@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: "", component: ProductPageComponent
   },
-  // {
-  //   path: "about", component: MapComponent
-  // }
-
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -6,10 +6,6 @@ const routes: Routes = [
   {
     path: "", component: MapComponent
   },
-  // {
-  //   path: "about", component: MapComponent
-  // }
-
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
