@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {INC2_POINT, INC_POINT, POINTS} from "../../../data/mark";
+import {Subject} from "rxjs";
 
 declare const ymaps3: any;
 @Component({
@@ -7,10 +8,11 @@ declare const ymaps3: any;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
   title = 'angular-yandex-maps';
   map: any
   YMapControlButton1: any;
+  destroy$ = new Subject<void>()
   ngOnInit(): void {
     ymaps3.ready;
     this.mapLoad()
@@ -18,7 +20,7 @@ export class MapComponent {
 
 
   async mapLoad() {
-    const {YMap, YMapDefaultSchemeLayer, YMapControlButton, YMapControls, YMapDefaultFeaturesLayer, YMapMarker} = ymaps3;
+    const {YMap, YMapDefaultSchemeLayer, YMapControlButton, YMapControls, YMapDefaultFeaturesLayer} = ymaps3;
     const {YMapZoomControl, YMapGeolocationControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
     const {YMapDefaultMarker} = await ymaps3.import('@yandex/ymaps3-markers@0.0.1');
     this.YMapControlButton1 = YMapControlButton;
@@ -82,5 +84,10 @@ export class MapComponent {
     console.log(ymaps3)
     console.log(ymaps3.YMap.controls)
     console.log( this.YMapControlButton1)
+  }
+  ngOnDestroy() {
+    this.destroy$.next()
+    this.destroy$.complete()
+
   }
 }

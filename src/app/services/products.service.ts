@@ -28,14 +28,14 @@ export class ProductsService{
               delay(200),
               retry(2),
               catchError(this.errorHandler)
-          ).subscribe({next: (products) => { this.products$.next(products)}})
+          ).subscribe({next: (products) => {
+            this.products$.next(products)}})
   }
   getAll(): Observable<IProduct[]> {
       return this.products$.pipe(pairwise(), map(([prev, next]) => [...prev, ...next]))
   }
-
   create(product:IProduct) {
-this.products$.next([product])
+      this.products$.next([product])
   }
   private errorHandler(error: HttpErrorResponse) {
     this.errorService.handle(error.message)

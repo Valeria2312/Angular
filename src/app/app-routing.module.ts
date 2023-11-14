@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {ProductPageComponent} from "./pages/product-page/product-page.component";
-import {AboutPageComponent} from "./pages/about-page/about-page.component";
 import {MapComponent} from "./pages/map/map.component";
 
 const routes: Routes = [
   {
-    path: "", component: ProductPageComponent
+    path: 'all',
+    loadChildren: () =>
+      import('./product.module').then(
+        (m) => m.ProductsModule
+      ),
   },
-  {
-    path: "about", component: MapComponent
-  }
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

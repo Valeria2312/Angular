@@ -1,5 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <input formControlName="title" type="text" class="border w-full py-2 px-4 mb-2" placeholder=" Product name" appFocus>
+<div class="form">
+  <mat-form-field [formGroup]="form">
+    <mat-label>Input</mat-label>
+    <input matInput formControlName="title" type="text" class="border w-full py-2 px-4 mb-2" placeholder=" Product name" appFocus>
+  </mat-form-field>
   <p class="text-red-400 font-extralight" *ngIf="title.errors?['minlength'] && title.touched : null">Min length</p>
-  <button type="submit" class="py-2 px-4 bg-blue-600 text-white">Create</button>
-</form>
+  <button type="submit" class="py-2 px-4 bg-blue-600 text-white" (click)="submit()">Create</button>
+</div>

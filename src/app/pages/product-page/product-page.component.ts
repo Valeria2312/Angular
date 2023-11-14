@@ -13,9 +13,9 @@ export class ProductPageComponent implements OnInit{
   title = 'Angular App';
   loading = false
   products: IProduct[]
-    private load$ = new Subject<void>();
+  private load$ = new Subject<void>();
   term = ''
-    destroy$ = new Subject<void>()
+  destroy$ = new Subject<void>()
   constructor(
     public productsService: ProductsService,
     public modalService:ModalService
@@ -24,20 +24,21 @@ export class ProductPageComponent implements OnInit{
       tap(() => {
           this.loading = true
       }),
-        switchMap(() => this.productsService.getAll().pipe( tap( () => {this.loading = false}))),
+        switchMap(() => this.productsService.getAll().pipe( tap( () => {
+          this.loading = false
+        }))),
         takeUntil(this.destroy$)
   ).subscribe({
         next: (products) => {
-          console.log(products)
           this.products = products
-        }
+        },
     })
   }
 
   ngOnInit(): void {
-      this.refrash()
+      this.refresh()
   }
-  refrash() {
+  refresh() {
     this.load$.next()
   }
   ngOnDestroy() {

@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductsService} from "../../services/products.service";
 import {ModalService} from "../../services/modal.service";
-import {ProductPageComponent} from "../../pages/product-page/product-page.component";
 
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
+  styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent {
   constructor(private productService: ProductsService, private modalService: ModalService, ) {
@@ -35,10 +34,6 @@ export class CreateProductComponent {
       }
     })
       this.modalService.close()
-      // .subscribe( {next: (product) => {
-      //     this.modalService.close()
-      //   }, error: () => { console.log("z nen")}
-      // } )
   }
 
 }

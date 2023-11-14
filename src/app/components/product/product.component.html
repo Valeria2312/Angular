@@ -1,24 +1,23 @@
-
-<div class="py-4 px-6 border rounded flex items-center flex-col mb-2">
-  <h2 class="mb-2 text-md text-center">{{ product.title}}</h2>
-  <img class="w-1/6 mb-2" [src]="product.image" [alt]="product.title">
-  <p>Price: <span class="font-bold">{{ product.price | currency: "RUB" }}</span></p>
-  <button
-    class="border py-2 px-4 rounded"
-    (click)="details = !details"
-    [ngClass] = "{
+<mat-card class="py-4 px-6 border rounded flex items-center flex-col mb-2">
+  <mat-card-header>
+     <mat-card-title class="mb-2 text-md text-center">{{product.title}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-lg-image [src]="product.image" [alt]="product.title">
+  <mat-card-actions>
+    <button
+      class="border py-2 px-4 rounded"
+      (click)="details = !details"
+      [ngClass] = "{
   'bg-yellow-400': !details,
   'bg-yellow-300': details,
-  }"
-  >
-  {{ details ? "Hide" : "Show" }} Description
+  }">
+      {{ details ? "Hide" : "Show" }} Description
+    </button>
+  </mat-card-actions>
+  <mat-card-content *ngIf="details">
+    <p>{{ product.description }}.</p>
+    <p>Rate:  <span class="font-bold">{{ product.rating.rate | number: '1.2-4'}}</span></p>
+  </mat-card-content>
+</mat-card>
 
-  </button>
-
-  <div *ngIf="details">
-    <p>{{ product.description }}</p>
-    <p>Rate: {{ product.rating.rate | number: '1.2-4'}}</p>
-  </div>
-
-</div>
 

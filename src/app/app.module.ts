@@ -10,12 +10,17 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FilterProductsPipe } from './pipes/filter-products.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
-import {NgOptimizedImage} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import { FocusDirective } from './derectives/focus.directive';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
-import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MapComponent } from './pages/map/map.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from "@angular/material/card";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 // декоратор
 @NgModule({
@@ -28,19 +33,27 @@ import { MapComponent } from './pages/map/map.component';
     CreateProductComponent,
     FocusDirective,
     ProductPageComponent,
-    AboutPageComponent,
     NavigationComponent,
-    MapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     HttpClientModule,
     FormsModule,
     NgOptimizedImage,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatToolbarModule
   ],
   providers: [],
+  exports: [
+    GlobalErrorComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
