@@ -1,0 +1,4 @@
+<div *ngIf="graphs.length > 0; else templateEmpty">
+  <app-chart [graphs]="graphs"></app-chart>
+</div>
+<ng-template #templateEmpty>Нет данных</ng-template>

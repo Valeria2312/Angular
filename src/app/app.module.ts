@@ -21,6 +21,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
 
 // декоратор
 @NgModule({
@@ -49,12 +52,16 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
-  exports: [
-    GlobalErrorComponent
-  ],
+    exports: [
+        GlobalErrorComponent,
+        CreateProductComponent
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
