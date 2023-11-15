@@ -1,7 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {IGraph} from "../../../models/graph";
-import {DataService} from "../../services/data.service";
-import {ChartData} from "chart.js";
+import {Component, OnInit} from '@angular/core';
+import {IGraph} from "../../../../../models/graph";
+import {DataService} from "../../../../services/data.service";
 
 @Component({
   selector: 'app-graphs',

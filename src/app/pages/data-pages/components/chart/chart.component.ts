@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewChildren
 } from "@angular/core";
-import {IGraph} from "../../../models/graph";
+import {IGraph} from "../../../../../models/graph";
 import {Chart} from "chart.js/auto";
 import 'chartjs-adapter-date-fns';
 

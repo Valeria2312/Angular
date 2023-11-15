@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../../models/product";
 import {ProductsService} from "../../services/products.service";
 import {ModalService} from "../../services/modal.service";
-import {finalize, Subject, switchMap, takeUntil, tap} from "rxjs";
+import {async, Subject, switchMap, takeUntil, tap} from "rxjs";
 
 @Component({
   selector: 'app-product-page',

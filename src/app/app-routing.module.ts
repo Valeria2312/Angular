@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DataPageModule} from "./pages/data-pages/data-page.module";
 
 const routes: Routes = [
   {

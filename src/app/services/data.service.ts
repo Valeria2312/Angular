@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ErrorService} from "./error.service";
 import {ITable} from "../../models/table";
-import {IProduct} from "../../models/product";
 import {IGraph} from "../../models/graph";
 
 
