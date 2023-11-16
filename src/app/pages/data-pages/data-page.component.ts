@@ -5,6 +5,4 @@ import {Component} from "@angular/core";
   templateUrl: './data-page.component.html',
   styleUrls: ['./data-page.component.css']
 })
-export class DataPageComponent {
-
-}
+export class DataPageComponent {}

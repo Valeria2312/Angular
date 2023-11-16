@@ -18,7 +18,6 @@ export class GraphsComponent implements OnInit{
     this.dataService.getGraphs()
       .subscribe({next: value => {
           this.graphs = value
-          console.log(this.graphs)
         }})
   }
 }
