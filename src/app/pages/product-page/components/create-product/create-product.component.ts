@@ -6,10 +6,10 @@ import {ModalService} from "../../services/modal.service";
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
+  styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent {
-  constructor(private productService: ProductsService, private modalService: ModalService) {
+  constructor(private productService: ProductsService, private modalService: ModalService, ) {
   }
   form = new FormGroup({
     title: new FormControl<string>('', [
@@ -32,9 +32,8 @@ export class CreateProductComponent {
         rate: 43,
         count: 1
       }
-    }).subscribe(() => {
-      this.modalService.close()
     })
+      this.modalService.close()
   }
 
 }

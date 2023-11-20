@@ -6,9 +6,9 @@
   [(ngModel)]="term"
 >
 <p *ngIf="loading" class="text-center text-lg">Loading...</p>
-<div *ngIf="productsService.products">
+<div *ngIf="products">
   <app-product
-    *ngFor="let product of productsService.products | filterProducts: term"
+    *ngFor="let product of  products | filterProducts: term"
     [product]="product"
   ></app-product>
 </div>
@@ -16,6 +16,10 @@
 
 <app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
   <app-create-product></app-create-product>
+</app-modal>
+
+<app-modal *ngIf="modalService.isError$ | async" title="Create new product">
+  <app-global-error></app-global-error>
 </app-modal>
 <button class="rounded-full bg-red-800 text-white fixed right-5 bottom-5 py-2 px-4" (click)="modalService.open()">+</button>
 

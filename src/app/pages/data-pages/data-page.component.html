@@ -1,0 +1,6 @@
+<nav mat-tab-nav-bar class="nav-tab" [tabPanel]="tabPanel">
+  <a *ngFor="let tab of tabs" mat-tab-link [routerLink]="tab.link" [active]="tab.link === currentTabLink">{{ tab.text }}</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
