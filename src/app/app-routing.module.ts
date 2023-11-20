@@ -17,7 +17,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'data',
+    path: 'charts',
     loadChildren: () =>
       import('./pages/data-pages/data-page.module').then(
         (m) => m.DataPageModule

@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {DataService} from "../../../../services/data.service";
+import {DataService} from "../../services/data.service";
 import {ITable} from "../../../../../models/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {catchError, of} from "rxjs";
 
 @Component({
   selector: 'app-table',
@@ -25,9 +26,14 @@ export class TableComponent implements OnInit{
   }
   getTableData() {
     this.dataService.getTable()
+      .pipe(
+        catchError(errMsg => {
+         console.log(errMsg, 'Не удалось получить данные для таблицы');
+          return of<ITable[]>([]);
+        }),
+      )
       .subscribe({next: value => {
-        // this.dataSource = value
-          this.dataSource.data = value;
+          this.dataSource.data = value || [];
         }})
   }
 }

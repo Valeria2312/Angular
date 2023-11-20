@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../../models/product";
-import {ProductsService} from "../../services/products.service";
-import {ModalService} from "../../services/modal.service";
-import {async, Subject, switchMap, takeUntil, tap} from "rxjs";
+import {ProductsService} from "./services/products.service";
+import {ModalService} from "./services/modal.service";
+import {async, catchError, of, Subject, switchMap, takeUntil, tap} from "rxjs";
+import {ITable} from "../../../models/table";
 
 @Component({
   selector: 'app-product-page',
@@ -24,13 +25,18 @@ export class ProductPageComponent implements OnInit{
       tap(() => {
           this.loading = true
       }),
+      catchError(errMsg => {
+        console.log(errMsg, 'Не удалось получить данные товаров');
+        return of<IProduct[]>([]);
+      }),
         switchMap(() => this.productsService.getAll().pipe( tap( () => {
           this.loading = false
         }))),
+
         takeUntil(this.destroy$)
   ).subscribe({
         next: (products) => {
-          this.products = products
+          this.products = products || []
         },
     })
   }

@@ -9,12 +9,10 @@ import {
     pairwise,
     retry,
 } from "rxjs";
-import {IProduct} from "../../models/product";
-import {ErrorService} from "./error.service";
+import {IProduct} from "../../../../models/product";
+import {ErrorService} from "../../../services/error.service";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class ProductsService{
   private products$ = new BehaviorSubject<IProduct[]>([]);

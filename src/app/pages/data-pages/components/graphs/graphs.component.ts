@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {IGraph} from "../../../../../models/graph";
-import {DataService} from "../../../../services/data.service";
+import {DataService} from "../../services/data.service";
+import {IDataset} from "../../../../../models/dataset";
+import {catchError, of} from "rxjs";
+import {ITable} from "../../../../../models/table";
 
 @Component({
   selector: 'app-graphs',
@@ -8,7 +11,7 @@ import {DataService} from "../../../../services/data.service";
   styleUrls: ['./graphs.component.css']
 })
 export class GraphsComponent implements OnInit{
-  graphs:IGraph[] = [];
+  graphs:IDataset[] = [];
   constructor(private dataService: DataService) {
   }
   ngOnInit(): void {
@@ -16,8 +19,17 @@ export class GraphsComponent implements OnInit{
   }
   getGraphsData() {
     this.dataService.getGraphs()
+      .pipe(
+        catchError(errMsg => {
+          console.log(errMsg, 'Не удалось получить данные для таблиц');
+          return of<IGraph[]>([]);
+        }),
+      )
       .subscribe({next: value => {
-          this.graphs = value
+          this.createGraphsInfo(value || [])
         }})
+  }
+  createGraphsInfo(value: IGraph[]) {
+    this.graphs = this.dataService.groupGraphsByOfficeId(value);
   }
 }

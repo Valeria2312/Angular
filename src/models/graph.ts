@@ -4,3 +4,4 @@ export interface IGraph {
   dt_date: string,
   qty: number
 }
+

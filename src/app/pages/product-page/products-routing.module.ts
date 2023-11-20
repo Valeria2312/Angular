@@ -1,14 +1,15 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {DataPageComponent} from "./pages/data-pages/data-page.component";
+import {ProductPageComponent} from "./product-page.component";
+import {MapComponent} from "../map/map.component";
 
 const routes: Routes = [
   {
-    path: "", component: DataPageComponent
+    path: "", component: ProductPageComponent
   },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DataRoutingModule {}
+export class ProductsRoutingModule {}

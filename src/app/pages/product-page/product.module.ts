@@ -16,9 +16,12 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {NavigationComponent} from "../../navigation/navigation.component";
-import {ProductsRoutingModule} from "../../products-routing.module";
+import {ProductsRoutingModule} from "./products-routing.module";
 import {MapComponent} from "../map/map.component";
 import {AppModule} from "../../app.module";
+import {ProductsService} from "./services/products.service";
+import {ModalService} from "./services/modal.service";
+import {ErrorService} from "../../services/error.service";
 
 @NgModule({
   declarations: [
@@ -46,6 +49,6 @@ import {AppModule} from "../../app.module";
     CreateProductComponent,
     FilterProductsPipe
   ],
-  providers: []
+  providers: [ProductsService, ModalService, ErrorService]
 })
 export class ProductsModule {}
